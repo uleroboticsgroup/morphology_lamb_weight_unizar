@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Lamb weight | Kaggle</title>
+    <meta charset="utf-8" />
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Kaggle is the world&#x2019;s largest data science community with powerful tools and resources to help you achieve your data science goals." />
+    <meta name="turbolinks-cache-control" content="no-cache" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+    <meta name="theme-color" content="#008ABC" />
+    <script nonce="pQzsCRgiW2s/5nuVinSxYA==" type="text/javascript">
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations()
+                .then(function(registrations) {
+                    for (let registration of registrations) {
+                        registration.unregister();
+                    }
+                })
+                .catch(function(err) {
+                    console.error("Service worker unregister failed: ", err);
+                });
+        }
+    </script>
+    <script nonce="pQzsCRgiW2s/5nuVinSxYA==" type="text/javascript">
+        window["pageRequestStartTime"] = 1602228656171;
+        window["pageRequestEndTime"] = 1602228656371;
+        window["initialPageLoadStartTime"] = new Date().getTime();
+    </script>
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin="anonymous" /><link rel="preconnect" href="https://stats.g.doubleclick.net" /><link rel="preconnect" href="https://storage.googleapis.com" /><link rel="preconnect" href="https://apis.google.com" />
+    <link href="/static/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="manifest" href="/static/json/manifest.json" crossorigin="use-credentials">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic" rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Google+Material+Icons" rel="stylesheet" type='text/css' />
+        <link rel="stylesheet" type="text/css" href="/static/assets/vendor.css?v=9725a0d037c5c28824c8" />
+        <link rel="stylesheet" type="text/css" href="/static/assets/app.css?v=27a17b5864e994e00c8a" />
+    
+    
+ 
+    
+    <script nonce="pQzsCRgiW2s/5nuVinSxYA==">
+        try{(function(a,s,y,n,c,h,i,d,e){d=s.createElement("style");
+        d.appendChild(s.createTextNode(""));s.head.appendChild(d);d=d.sheet;
+        y=y.map(x => d.insertRule(x + "{ opacity: 0 !important }"));
+        h.start=1*new Date;h.end=i=function(){y.forEach(x => x<d.cssRules.length ? d.deleteRule(x) : {})};
+        (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
+        })(window,document,['.site-header-react__nav'],'dataLayer',2000,{'GTM-52LNT9S':true});}catch(ex){}
+    </script>
+    <script nonce="pQzsCRgiW2s/5nuVinSxYA==">
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-12629138-1', {
+            'optimize_id': 'GTM-52LNT9S',
+            'displayFeaturesTask': null,
+            'send_page_view': false,
+            'content_group1': 'Datasets'
+        });
+    </script>
+    <script nonce="pQzsCRgiW2s/5nuVinSxYA==" async src="https://www.googletagmanager.com/gtag/js?id=UA-12629138-1"></script>
+
+    
+    
+        <meta property="og:url" content="https://kaggle.com/vriegc00/lamb-weight" />
+        <meta property="og:title" content="Lamb weight" />
+        <meta property="og:description" content="" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://storage.googleapis.com/kaggle-datasets-images/new-version-temp-images/default-backgrounds-30.png-2856043/dataset-card.png" />
+        <meta property="fb:app_id" content="2665027677054710" />
+
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@kaggledatasets" />
+    
+
+    
+    
+        <script nonce="pQzsCRgiW2s/5nuVinSxYA==" type="application/ld+json">{"@context":"http://schema.org/","@type":"Dataset","name":"Lamb weight","description":"# Dataset\nThis dataset was created by Virginia RdelC\n\nReleased under Data files © Original Authors\n\n# Contents\nIt contains the following files:\n\n","url":"https://www.kaggle.com/vriegc00/lamb-weight","sameAs":"","version":1,"keywords":[],"license":{"@type":"CreativeWork","name":"Data files © Original Authors","url":""},"identifier":["911681"],"includedInDataCatalog":{"@type":"DataCatalog","name":"Kaggle","url":"https://www.kaggle.com"},"creator":{"@type":"Person","name":"Virginia RdelC","url":"https://www.kaggle.com/vriegc00","image":"https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png"},"distribution":[{"@type":"DataDownload","requiresSubscription":true,"encodingFormat":"zip","fileFormat":"zip","contentUrl":"https://www.kaggle.com/vriegc00/lamb-weight/download","contentSize":"5808267836 bytes"}],"commentCount":0,"dateModified":"2020-10-08T12:13:51.81","discussionUrl":"https://www.kaggle.com/vriegc00/lamb-weight/discussion","alternateName":"","isAccessibleForFree":true,"thumbnailUrl":"https://storage.googleapis.com/kaggle-datasets-images/new-version-temp-images/default-backgrounds-30.png-2856043/dataset-card.png","interactionStatistic":[{"@type":"InteractionCounter","interactionType":"http://schema.org/CommentAction","userInteractionCount":0},{"@type":"InteractionCounter","interactionType":"http://schema.org/DownloadAction","userInteractionCount":1},{"@type":"InteractionCounter","interactionType":"http://schema.org/ViewAction","userInteractionCount":8},{"@type":"InteractionCounter","interactionType":"http://schema.org/LikeAction","userInteractionCount":0}]}</script>
+    
+
+    
+    
+    
+<script nonce="pQzsCRgiW2s/5nuVinSxYA==" type="text/javascript">
+    var Kaggle = window.Kaggle || {};
+
+    Kaggle.Current = {
+        antiForgeryToken: 'CfDJ8LdUzqlsSWBPr4Ce3rb9VL-nBGfJ9BxWZa2jaf6qNGZ7wb4iXQrnkytls6N3gJB4fPHyrVx7JjLVawnLXFC72rqeIQ8kLyk14SC_pjawAMD657d2cXm6yETIwGB6hsVwLAuT2b_G0Y92T4bheQLgG4c',
+        isAnonymous: true,
+        analyticsToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDIyMjk1NTYsIlVzZXJJZCI6MH0.-gzY6zqB-dI_pH3StymwhwnItRn2Bh3YCsj4H7u_2Co',
+        analyticsTokenExpiry: 15,
+        
+        
+        
+        
+        
+        
+        mdeImageUploader: true,
+        
+        enableRapidash: true, 
+    }
+        Kaggle.Current.log = function(){};
+        Kaggle.Current.warn = function(){};
+
+    var decodeUserDisplayName = function () {
+        var escapedUserDisplayName = Kaggle.Current.userDisplayNameEscaped || "";
+        try {
+            var textVersion = new DOMParser().parseFromString(escapedUserDisplayName, "text/html").documentElement.textContent;
+            if (textVersion) {
+                return textVersion;
+            }
+        } catch(ex) {}
+        return escapedUserDisplayName;
+    }
+    Kaggle.Current.userDisplayName = decodeUserDisplayName();
+</script>
+
+    
+
+<script nonce="pQzsCRgiW2s/5nuVinSxYA==" type="text/javascript">
+    var Kaggle = window.Kaggle || {};
+    Kaggle.PageMessages = [];
+</script>
+
+        <script nonce="pQzsCRgiW2s/5nuVinSxYA==" type="text/javascript">
+/* <![CDATA[ */
+goog_snippet_vars = function() {
+    var w = window;
+    w.google_conversion_id = 955616553;
+    w.google_conversion_label = "QSjvCKDksHMQqZrWxwM";
+    w.google_conversion_value = 0.00;
+    w.google_conversion_currency = "USD";
+    w.google_remarketing_only = false;
+    w.google_conversion_language = "en";
+    w.google_conversion_format = "3";
+    w.google_conversion_color = "ffffff";
+}
+// DO NOT CHANGE THE CODE BELOW.
+goog_report_conversion = function(url) {
+    goog_snippet_vars();
+    window.google_conversion_format = "3";
+    var opt = new Object();
+    opt.onload_callback = function() {
+        if (typeof(url) != 'undefined') {
+            window.location = url;
+        }
+    }
+    var conv_handler = window['google_trackConversion'];
+    if (typeof(conv_handler) == 'function') {
+        conv_handler(opt);
+    }
+}
+/* ]]> */
+    </script>
+    <script nonce="pQzsCRgiW2s/5nuVinSxYA==" type="text/javascript"
+            src="//www.googleadservices.com/pagead/conversion_async.js">
+    </script>
+
+
+
+        <script nonce="pQzsCRgiW2s/5nuVinSxYA==">window['useKaggleAnalytics'] = true;</script>
+
+    <script id="gapi-target" nonce="pQzsCRgiW2s/5nuVinSxYA==" src="https://apis.google.com/js/api.js" defer async></script>
+    <script nonce="pQzsCRgiW2s/5nuVinSxYA==" src="/static/assets/runtime.js?v=43e02026d1b00dee7734" data-turbolinks-track="reload"></script>
+    <script nonce="pQzsCRgiW2s/5nuVinSxYA==" src="/static/assets/vendor.js?v=44271bf4137a4a55f133" data-turbolinks-track="reload"></script>
+    <script nonce="pQzsCRgiW2s/5nuVinSxYA==" src="/static/assets/app.js?v=7ca3b001b5564464108a" data-turbolinks-track="reload"></script>
+        <script nonce="pQzsCRgiW2s/5nuVinSxYA==" type="text/javascript">
+            window.kaggleStackdriverConfig = {
+                key: 'AIzaSyDANGXFHtSIVc51MIdGwg4mQFgm3oNrKoo',
+                projectId: 'kaggle-161607',
+                service: 'web-fe',
+                version: 'ci',
+                context: {
+                    user: '0',
+                },
+            };
+        </script>
+</head>
+<body data-turbolinks="false">
+    <main>
+        
+
+
+
+
+
+
+<div id="site-container"></div>
+<div data-component-name="NavigationContainer" style="display: flex; flex-direction: column; flex: 1 0 auto;"></div><script class="kaggle-component" nonce="pQzsCRgiW2s/5nuVinSxYA==">var Kaggle=window.Kaggle||{};Kaggle.State=Kaggle.State||[];Kaggle.State.push({"navigationType":"BOTH_NAV"});performance && performance.mark && performance.mark("NavigationContainer.componentCouldBootstrap");</script>
+<div id="site-body" class="hide">
+    
+
+
+<div data-component-name="DatasetContainer" style="display: flex; flex-direction: column; flex: 1 0 auto;"></div><script class="kaggle-component" nonce="pQzsCRgiW2s/5nuVinSxYA==">var Kaggle=window.Kaggle||{};Kaggle.State=Kaggle.State||[];Kaggle.State.push({"scripts":[],"discussions":[],"pageMessages":[],"discussion":{"canDownvote":false,"dataUrl":"/forums/927458/topics.json","id":927458,"isRootLevel":false,"showSubscribeButton":false,"isSubscribed":false,"subscription":"unsubscribe","initialTopics":null,"paramValues":{"category":"all","page":1,"search":null,"group":"all","sortBy":"hot"}},"currentTab":"data","newTopic":{"allowAttachments":false,"authorRanking":null,"authorTier":"novice","authorType":"topic","forumId":927458,"parentName":"Lamb weight","parentUrl":"/vriegc00/lamb-weight/discussion"},"categories":{"type":"dataset","tags":[]},"upvoteSuggestion":{"voteCount":0,"medalVoteCount":0,"upVoteUrl":"/vriegc00/lamb-weight/vote","upVoters":[]},"readerGroupId":null,"writerGroupId":null,"collaborators":{"owner":{"userId":2856043,"groupId":null,"groupMemberCount":null,"profileUrl":"/vriegc00","thumbnailUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png","name":"Virginia RdelC","slug":"vriegc00","userTier":0,"joinDate":null,"type":"owner","isUser":true,"isGroup":false},"collaborators":[]},"isCollaborator":false,"deletionNeedsReview":false,"hasDatasetDoiApproved":false,"canSeeConfigAsCode":true,"canSeeDatasetTasks":false,"canCreateDatasetTasks":true,"blockTaskCreation":false,"canSeeDatasetHashLink":true,"medalUrl":null,"datasetHashLink":null,"datasetId":911681,"internalNotes":"","isRemoved":false,"isVersionRemoved":false,"isFeatured":false,"isSuperFeatured":false,"scheduledToBeFeatured":null,"scheduledToBeUnFeatured":null,"scheduledToBeSuperFeatured":null,"scheduledToBeUnSuperFeatured":null,"datasetVersionId":1545351,"datasetVersionNumber":1,"lastVersionNumber":1,"datasetUrl":"/vriegc00/lamb-weight","datasetExternalUrl":"https://kaggle.com/vriegc00/lamb-weight","originalImageUrl":"https://storage.googleapis.com/kaggle-datasets-images/default-backgrounds/30.png","coverImageUrl":"https://storage.googleapis.com/kaggle-datasets-images/new-version-temp-images/default-backgrounds-30.png-2856043/dataset-cover.png","cardImageUrl":"https://storage.googleapis.com/kaggle-datasets-images/new-version-temp-images/default-backgrounds-30.png-2856043/dataset-card.png","thumbnailImageUrl":"https://storage.googleapis.com/kaggle-datasets-images/new-version-temp-images/default-backgrounds-30.png-2856043/dataset-thumbnail.png","license":{"id":11,"name":"Data files © Original Authors","description":"Data files © Original Authors","url":null,"displaySequence":null},"voteCount":0,"upVoteUrl":"/vriegc00/lamb-weight/vote","creatorUserId":2856043,"creatorDisplayName":"Virginia RdelC","ownerTwitter":null,"lastUpdated":"2020-10-08T12:13:51.81Z","downloadUrl":"/vriegc00/lamb-weight/download","newNotebookUrl":"/kernels/notebooks/new?datasetVersionId=1545351","newScriptUrl":"/kernels/scripts/new?datasetVersionId=1545351","hasAlreadyVotedUp":false,"isOldDatasetVersion":false,"numberOfViews":8,"numberOfDownloads":1,"numberOfScripts":0,"numberOfTopics":0,"numberOfTasks":0,"canEdit":false,"canPerformOwnerTasks":false,"canEditSlug":false,"canEditPublishStatus":false,"canEditFeatureStatus":false,"canEditInternalNotes":false,"canEditDescription":false,"hideVersionStatuses":true,"cardImageLeft":650,"cardImageTop":0,"cardImageWidth":600,"cardImageHeight":600,"coverImageLeft":0,"coverImageTop":100,"coverImageWidth":1900,"coverImageHeight":400,"datasetVersions":[{"id":1545351,"slug":"lamb-weight","name":"Lamb weight","creationDate":"2020-10-08T12:13:51.81Z","versionNumber":1,"versionNotes":"Initial release","thumbnailImageUrl":"https://storage.googleapis.com/kaggle-datasets-images/new-version-temp-images/default-backgrounds-30.png-2856043/dataset-thumbnail.png","datasetVersionUrl":"/vriegc00/lamb-weight/version/1","status":"ready","userMessage":null,"isRemoved":false,"creator":{"id":2856043,"imageUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png","isOrganization":false,"name":"Virginia RdelC","profileUrl":"/vriegc00","slug":"vriegc00","maxFileSizeBytes":null,"userTier":null,"organizationMemberCount":null},"userSpecifiedSources":null,"doi":null,"databundleVersionId":1580087}],"datasetVersionTotalCount":1,"feed":[],"topicId":null,"isNewTopic":false,"canSeeDeletionButton":false,"checklistDismissed":false,"type":"fileset","diffType":"versioned","checklistCollapsed":false,"isInFlight":false,"maintainerOrganization":null,"createdByKernel":null,"usabilityRating":{"score":0.25,"columnDescriptionScore":null,"coverImageScore":0.0,"fileDescriptionScore":0.0,"fileFormatScore":1.0,"licenseScore":1.0,"overviewScore":0.0,"provenanceScore":0.0,"publicKernelScore":0.0,"subtitleScore":0.0,"tagScore":0.0,"updateFrequencyScore":0.0},"licenseGroups":[{"id":1,"name":"Creative Commons","licenses":[{"id":1,"name":"CC0: Public Domain","description":"CC0: Public Domain \u003ca href=\u0022https://creativecommons.org/publicdomain/zero/1.0/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://creativecommons.org/publicdomain/zero/1.0/","displaySequence":1},{"id":3,"name":"CC BY-NC-SA 4.0","description":"CC BY-NC-SA 4.0 \u003ca href=\u0022https://creativecommons.org/licenses/by-nc-sa/4.0/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://creativecommons.org/licenses/by-nc-sa/4.0/","displaySequence":2},{"id":8,"name":"CC BY-SA 4.0","description":"CC BY-SA 4.0 \u003ca href=\u0022https://creativecommons.org/licenses/by-sa/4.0/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://creativecommons.org/licenses/by-sa/4.0/","displaySequence":3},{"id":10,"name":"CC BY-SA 3.0","description":"CC BY-SA 3.0 \u003ca href=\u0022https://creativecommons.org/licenses/by-sa/3.0/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://creativecommons.org/licenses/by-sa/3.0/","displaySequence":4},{"id":13,"name":"Attribution 4.0 International (CC BY 4.0)","description":"CC-BY 4.0 \u003ca href=\u0022https://creativecommons.org/licenses/by/4.0/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://creativecommons.org/licenses/by/4.0/","displaySequence":5},{"id":14,"name":"Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)","description":"CC-BY-NC 4.0 \u003ca href=\u0022https://creativecommons.org/licenses/by-nc/4.0/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://creativecommons.org/licenses/by-nc/4.0/","displaySequence":6},{"id":16,"name":"Attribution 3.0 Unported (CC BY 3.0)","description":"CC BY 3.0 \u003ca href=\u0022https://creativecommons.org/licenses/by/3.0/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://creativecommons.org/licenses/by/3.0/","displaySequence":7},{"id":17,"name":"Attribution 3.0 IGO (CC BY 3.0 IGO)","description":"CC BY 3.0 IGO \u003ca href=\u0022https://creativecommons.org/licenses/by/3.0/igo/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://creativecommons.org/licenses/by/3.0/igo/","displaySequence":8},{"id":19,"name":"Attribution-NonCommercial-ShareAlike 3.0 IGO (CC BY-NC-SA 3.0 IGO)","description":"CC BY-NC-SA 3.0 IGO \u003ca href=\u0022https://creativecommons.org/licenses/by-nc-sa/3.0/igo/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://creativecommons.org/licenses/by-nc-sa/3.0/igo/","displaySequence":9},{"id":22,"name":"Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)","description":"CC BY-ND 4.0 \u003ca href=\u0022https://creativecommons.org/licenses/by-nd/4.0/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://creativecommons.org/licenses/by-nd/4.0/","displaySequence":10},{"id":23,"name":"Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)","description":"CC BY-NC-ND 4.0 \u003ca href=\u0022https://creativecommons.org/licenses/by-nc-nd/4.0/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://creativecommons.org/licenses/by-nc-nd/4.0/","displaySequence":11}],"displaySequence":1},{"id":2,"name":"GPL","licenses":[{"id":9,"name":"GPL 2","description":"GPL 2 \u003ca href=\u0022http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html","displaySequence":1},{"id":25,"name":"GNU Lesser General Public License 3.0","description":"LGPL 3.0 \u003ca href=\u0022http://www.gnu.org/licenses/lgpl-3.0.html\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"http://www.gnu.org/licenses/lgpl-3.0.html","displaySequence":2},{"id":26,"name":"GNU Affero General Public License 3.0","description":"AGPL 3.0 \u003ca href=\u0022http://www.gnu.org/licenses/agpl-3.0.html\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"http://www.gnu.org/licenses/agpl-3.0.html","displaySequence":3},{"id":27,"name":"GNU Free Documentation License 1.3","description":"FDL 1.3 \u003ca href=\u0022http://www.gnu.org/licenses/fdl-1.3.html\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"http://www.gnu.org/licenses/fdl-1.3.html","displaySequence":4}],"displaySequence":2},{"id":3,"name":"Open Data Commons","licenses":[{"id":5,"name":"Database: Open Database, Contents: Database Contents","description":"Database: Open Database \u003ca href=\u0022http://opendatacommons.org/licenses/odbl/1.0/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e, Contents: Database Contents \u003ca href=\u0022http://opendatacommons.org/licenses/dbcl/1.0/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"http://opendatacommons.org/licenses/dbcl/1.0/","displaySequence":1},{"id":6,"name":"Database: Open Database, Contents: © Original Authors","description":"Database: Open Database \u003ca href=\u0022http://opendatacommons.org/licenses/odbl/1.0/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e, Contents: © Original Authors","url":"http://opendatacommons.org/licenses/odbl/1.0/","displaySequence":2},{"id":15,"name":"ODC Public Domain Dedication and Licence (PDDL)","description":"PDDL  \u003ca href=\u0022https://opendatacommons.org/licenses/pddl/1.0/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://opendatacommons.org/licenses/pddl/1.0/","displaySequence":3},{"id":24,"name":"ODC Attribution License (ODC-By)","description":"ODC-BY 1.0 \u003ca href=\u0022https://opendatacommons.org/licenses/by/1-0/index.html\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://opendatacommons.org/licenses/by/1-0/index.html","displaySequence":4}],"displaySequence":3},{"id":6,"name":"Community Data License","licenses":[{"id":20,"name":"Community Data License Agreement - Permissive - Version 1.0","description":"CDLA Permissive 1.0 \u003ca href=\u0022https://cdla.io/permissive-1-0/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://cdla.io/permissive-1-0/","displaySequence":1},{"id":21,"name":"Community Data License Agreement - Sharing - Version 1.0","description":"CDLA Sharing 1.0 \u003ca href=\u0022https://cdla.io/sharing-1-0/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://cdla.io/sharing-1-0/","displaySequence":2}],"displaySequence":4},{"id":4,"name":"Special","licenses":[{"id":7,"name":"World Bank Dataset Terms of Use","description":"World Bank Dataset Terms of Use \u003ca href=\u0022https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets","displaySequence":1},{"id":2,"name":"Reddit API Terms","description":"Reddit API Terms \u003ca href=\u0022https://www.reddit.com/wiki/api\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://www.reddit.com/wiki/api","displaySequence":2},{"id":18,"name":"U.S. Government Works","description":"U.S. Government Works \u003ca href=\u0022https://www.usa.gov/government-works/\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://www.usa.gov/government-works/","displaySequence":3},{"id":28,"name":"EU ODP Legal Notice","description":"EU ODP Legal Notice \u003ca href=\u0022https://ec.europa.eu/info/legal-notice_en\u0022 target=\u0022_blank\u0022\u003e\u003cspan class=\u0022fa fa-info-circle\u0022/\u003e\u003c/a\u003e","url":"https://ec.europa.eu/info/legal-notice_en","displaySequence":4}],"displaySequence":5},{"id":5,"name":"Other","licenses":[{"id":11,"name":"Data files © Original Authors","description":"Data files © Original Authors","url":null,"displaySequence":1},{"id":12,"name":"Other (specified in description)","description":"Other (specified in description)","url":null,"displaySequence":2},{"id":4,"name":"Unknown","description":"Unknown","url":null,"displaySequence":3}],"displaySequence":6}],"owners":[{"id":0,"imageUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/","isOrganization":false,"name":null,"profileUrl":"/","slug":null,"maxFileSizeBytes":null,"userTier":null,"organizationMemberCount":null},{"id":2856043,"imageUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png","isOrganization":false,"name":"Virginia RdelC","profileUrl":"/vriegc00","slug":"vriegc00","maxFileSizeBytes":null,"userTier":0,"organizationMemberCount":null}],"referrer":null,"convertToStandardCsvFormat":false,"overview":"","description":"","actions":[],"flags":[],"title":"Lamb weight","slug":"lamb-weight","licenseId":11,"data":{"id":1580087,"databundleId":933033,"databundleVersionType":"fileset","databundleDiffType":"versioned","versionNumber":1,"zipBlobFileId":null,"totalSize":5808267836,"ownerInfo":{"databundleVersionId":1580087,"dataset":{"datasetId":911681,"datasetVersionId":1545351,"dataviewToken":"eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0..IwFufMgDkvEhVWamq_Y2lg.aKwWIuFmMeOXdcbCxWIHrrcDjlWIjWNfWAn4z3GuDzz4r8RcbAOMwNIp8uMxQBlVu5lSwJ-MootAQt-XOcWVW0teEVucaPGh5QwPb2c7uqZCRnyXt1KAaupPD3ekBxxUYhNggFgzo_3GRviPjmwFbllC-Swh82GzWNA3x5tuwpBaRzstbglOBUabTRIG7_zePgZHqmg1bMhy7v3ZA0Q9iVqOSLF4eocV3IAkIUyx8be_1fGcc8W7YT9YpfNLsB1rl1yw_L-4jXYwLTew0bERe1FR9K0lfRkGSqldEfVdCVFtfeEETvI3n7lP8bWFw7qBxrgBeiypuWC_Ls0hqPI_Exe2Agqk_JyU7D-zDjY_NFPPdPwbL7cm48P1af39886CuV6pUDp81hkm6o4kv-adpxu9C-pkrbhWfrMJqd13khLk80dGZrCtAReXmme75o4w.wbN4I89kCSNMwnGcUykUEA","scope":"vriegc00/lamb-weight"},"competition":null,"kernel":null,"previewsDisabled":false},"usesArchiveV2":true,"hasBundleDownload":true,"type":"databundleVersion","collapsed":false,"info":{"metrics":null,"archiveInfo":null,"archiveInfoV2":null,"blobFileInfo":null,"convertCsvInfo":null,"kernelReference":null},"settings":{"csvSettings":null,"bigQuerySettings":null,"bigQueryMirrorSettings":null,"storageSettings":{"webDataLocation":{"bucket":"kaggle-data-sets","path":"911681/1545351/upload"},"sdsDataLocation":{"bucket":"kagglesdsdata","path":"datasets/911681/1545351"},"responseDataLocation":null},"remoteUrlSettings":null,"remoteGithubSettings":null},"render":null,"totalChildren":0,"children":[],"firestorePath":"Yt8onTdfr3etGhxFaraH/versions/ILVFNdpiNiXMqnSbzfYt","firestoreKey":"ILVFNdpiNiXMqnSbzfYt","name":"Lamb weight","description":""},"isPrivate":false,"owner":{"id":2856043,"imageUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png","isOrganization":false,"name":"Virginia RdelC","profileUrl":"/vriegc00","slug":"vriegc00","maxFileSizeBytes":null,"userTier":0,"organizationMemberCount":null}});performance && performance.mark && performance.mark("DatasetContainer.componentCouldBootstrap");</script><script nonce="pQzsCRgiW2s/5nuVinSxYA==" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    preferredFont: "TeX",
+    availableFonts: ["STIX", "TeX"],
+    linebreaks: {
+    automatic: true
+    },
+    EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+    inlineMath: [["\\(", "\\)"], ["\\\\(", "\\\\)"]],
+    displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+    processEscapes: true,
+    ignoreClass: "tex2jax_ignore|dno"
+    },
+    TeX: {
+    noUndefined: {
+    attributes: {
+    mathcolor: "red",
+    mathbackground: "#FFEEEE",
+    mathsize: "90%"
+    }
+    }
+    },
+    Macros: {
+    href: "{}"
+    },
+    skipStartupTypeset: true,
+    messageStyle: "none"
+    });
+</script>
+<script nonce="pQzsCRgiW2s/5nuVinSxYA==" type="text/javascript" async crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+</div>
+
+
+
+
+    </main>
+</body>
+</html>
