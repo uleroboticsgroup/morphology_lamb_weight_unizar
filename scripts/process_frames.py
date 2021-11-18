@@ -252,32 +252,13 @@ class ImageExpert:
                 'perimeter': perimeter,
                 'symmetry': symmetry}
 
+    def clean_mask(self, mask_in):
+        diskSize= 9
 
-    def get_foreground_mask_fast_strategy(self):
+        kernel = np.ones((5,5),np.uint8)
+        closing = cv2.morphologyEx(mask_in, cv2.MORPH_CLOSE, kernel)
 
-        img = cv2.normalize(self.parent_window.camera.color_image, None, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_32F)
-
-        windowSize = 25
-        kernel = np.ones((windowSize,windowSize)) / windowSize ** 2
-        blurryImage = cv2.filter2D(img, -1, kernel, borderType = cv2.BORDER_REPLICATE)
-
-        #plt.imshow(blurryImage, cmap = 'gray')
-        #plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
-        #plt.show()
-        #Morphological operations
-
-        diskSize = 20
-        grayimg = cv2.cvtColor(blurryImage, cv2.COLOR_BGR2GRAY)
-        scale = cv2.convertScaleAbs(grayimg)
-        ret2,th = cv2.threshold(scale,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
-        #ret2,th = cv2.threshold(np.array(blurryImage,dtype='float32'),0,1,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
-        #plt.imshow(th, cmap = 'gray')
-        #plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
-        #plt.show()
-
-#
-        mask_depth = th.astype(bool)
-
+        mask_depth = closing.astype(bool)
         # Removing small objects
         cleaned_mask_depth = morphology.remove_small_objects(mask_depth, min_size=500, connectivity=1)
 
@@ -300,14 +281,7 @@ class ImageExpert:
                 markers[markers == label] = 0
         # Applying the mask to the image a segmented image is obtained
         mask = markers.astype(np.uint8) * 255
-#
-
         cleaned = morphology.remove_small_objects(mask, min_size=500, connectivity=1)
-        #plt.imshow(cleaned, cmap = 'gray')
-        #plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
-        #plt.show()
-
-
         cleaned2 = cleaned.astype(np.uint8)*255
         # Copy the thresholded image.
         im_floodfill = cleaned2.copy()
@@ -326,61 +300,133 @@ class ImageExpert:
         # Combine the two images to get the foreground.
         im_out = cleaned2 | im_floodfill_inv
 
-        #plt.imshow(im_out, cmap = 'gray')
-        #plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
-        #plt.show()
-
 
         label_img = morphology.label(im_out,connectivity=1)
         size = np.bincount(label_img.ravel())
         if len(size) == 1:
-            return np.zeros_like(grayimg)
+            return np.zeros_like(mask_in)
         biggest_label = size[1:].argmax() + 1
 
         clump_mask = label_img == biggest_label
 
-        # plt.imshow(clump_mask, cmap = 'gray')
-        # plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
-        # plt.show()
-
         selem = morphology.disk(diskSize)
 
-        ##%%
         clump_maskA = clump_mask.astype(np.uint8)*255
-        #kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(diskSize,diskSize))
-        eroded = cv2.erode(clump_maskA,selem)
+        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(diskSize,diskSize))
+        #kernel = np.ones((5,5),np.uint8)
+        closing = cv2.morphologyEx(clump_maskA, cv2.MORPH_OPEN, kernel)
+        #eroded = cv2.erode(clump_maskA,selem)
 
-
-        #plt.imshow(eroded, cmap = 'gray')
-        #plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
-        #plt.show()
-
-        label2_img = morphology.label(eroded,connectivity=1)
+        label2_img = morphology.label(closing,connectivity=1)
         size2 = np.bincount(label2_img.ravel())
         if len(size2) == 1:
-            return np.zeros_like(grayimg)
+            return np.zeros_like(mask_in)
         biggest_label2 = size2[1:].argmax() + 1
         clump_mask2 = label2_img == biggest_label2
 
-        #plt.imshow(clump_mask2, cmap = 'gray')
-        #plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
-        #plt.show()
+        mask = clump_mask2.astype(np.uint8)*255
+        #mask = cv2.dilate(clump_mask2A,selem)
 
-        clump_mask2A = clump_mask2.astype(np.uint8)*255
-        mask = cv2.dilate(clump_mask2A,selem)
+        """
+        fig, ax = plt.subplots(1,4)
+        ax[0].imshow(mask_in, cmap='gray')
+        ax[0].set_title('Mask')
+        ax[0].axis('off'),plt.yticks([])
 
-        #cv2.imwrite(os.path.join('/Users/Enrique/Google Drive Uni/Test/', 'Prueba2.jpg'), mask)
+        ax[1].imshow(clump_maskA, cmap='gray')
+        ax[1].set_title('clump_maskA')
+        ax[1].axis('off'),plt.yticks([])
 
-        #plt.imshow(mask, cmap = 'gray')
-        #plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
-        #plt.show()
+        ax[2].imshow(closing, cmap='gray')
+        ax[2].set_title('closing')
+        ax[2].axis('off'),plt.yticks([])
 
-        # Using the depth image as a mask
+        ax[3].imshow(mask, cmap='gray')
+        ax[3].set_title('Final mask')
+        ax[3].axis('off'),plt.yticks([])
+
+        plt.show()
+        """
 
         return mask
 
+    def areas_big_contours(self, mask):
+        cnts, _ = cv.findContours(mask, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
+        areas= []
+        for cnt in cnts:
+            area = cv.contourArea(cnt)
+            if area>5000:
+                x,y,w,h = cv.boundingRect(cnt)
+                limit = True if x==0 or y ==h or (x+w)==mask.shape[1] or (y+h)==mask.shape[0] else False
+                if not limit:
+                    areas.append(area)
+        areas.sort()
+        return areas
 
-#%%
+    def get_foreground_mask_fast_strategy(self):
+        img = cv2.normalize(self.parent_window.camera.color_image, None, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_32F)
+        #Apply sharpen kernel
+        kernel = np.array([[0, -1, 0],
+                   [-1, 5,-1],
+                   [0, -1, 0]])
+        image_sharp = cv2.filter2D(src=img, ddepth=-1, kernel=kernel)
+        self.sharp_img =  image_sharp
+        #Get luminance from LAB color space
+        img_lab = cv2.cvtColor(image_sharp, cv2.COLOR_BGR2LAB)
+        lum_img = img_lab[:,:,0]
+        lum_scale = cv2.convertScaleAbs(lum_img)
+        self.lab_img = lum_scale
+        #Otsu binarization
+        _,lum_bin = cv2.threshold(lum_scale,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+        self.lab_mask = lum_bin
+        #Find contours
+        lum_areas = self.areas_big_contours(lum_bin)
+        kernel = np.ones((5,5),np.uint8)
+        if len(lum_areas)==1:
+            lum_closing = cv2.morphologyEx(lum_bin, cv2.MORPH_CLOSE, kernel)
+            closing_areas = self.areas_big_contours(lum_closing)
+            if len(closing_areas)==1:
+                final_mask= lum_closing
+                self.mask_method = 'LAB_closing'
+            else:
+                lum_opening = cv2.morphologyEx(lum_bin, cv2.MORPH_OPEN, kernel)
+                opening_areas = self.areas_big_contours(lum_opening)
+                final_mask= lum_opening
+                self.mask_method = 'LAB_opening'
+        else:
+            #Calculate gray method
+            gray_img = cv2.cvtColor(image_sharp, cv2.COLOR_BGR2GRAY)
+            self.gray_img = gray_img
+            gray_scale = cv2.convertScaleAbs(gray_img)
+            _,gray_bin= cv2.threshold(gray_scale,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+            final_mask = cv2.morphologyEx(gray_bin, cv2.MORPH_OPEN, kernel)
+            self.mask_method = 'Gray_opening'
+
+        mask = self.clean_mask(final_mask)
+        self.mask = final_mask
+        self.cleaned_mask = mask.copy()
+        """
+        fig, ax = plt.subplots(1,4)
+        ax[0].imshow(image_sharp)
+        ax[0].set_title('RGB Image')
+        ax[0].axis('off'),plt.yticks([])
+
+        ax[1].imshow(lum_bin, cmap='gray')
+        ax[1].set_title('LAB-Otsu')
+        ax[1].axis('off'),plt.yticks([])
+
+        ax[2].imshow(final_mask, cmap='gray')
+        ax[2].set_title('Morphology')
+        ax[2].axis('off'),plt.yticks([])
+
+        ax[3].imshow(mask, cmap='gray')
+        ax[3].set_title('Final mask')
+        ax[3].axis('off'),plt.yticks([])
+        plt.show()
+        exit()
+        """
+
+        return mask
 
 
 class Processor:
@@ -425,19 +471,32 @@ class Processor:
         output_filename = os.path.join(mosaic_path, os.path.basename(depth_filename).replace('.npy', '_mosaico.png'))
         cv2.imwrite(output_filename, mosaico_imagen)
 
+
+        file_name=os.path.basename(depth_filename)[:-4]
+        test_path = mosaic_path[:mosaic_path[:-1].rindex('/')]+'/mask/'
+        plt.imshow(self.image_expert.sharp_img),plt.axis('off')
+        plt.savefig(os.path.join(test_path,file_name+'_sharp.png'), dpi=200, bbox_inches='tight',pad_inches = 0)
+        cv2.imwrite(os.path.join(test_path,file_name+'_lab.png'), cv2.cvtColor(self.image_expert.lab_img, cv2.COLOR_GRAY2RGB))
+        cv2.imwrite(os.path.join(test_path,file_name+'_lab_mask.png'), cv2.cvtColor(self.image_expert.lab_mask, cv2.COLOR_GRAY2RGB))
+        cv2.imwrite(os.path.join(test_path,file_name+'_mask.png'), cv2.cvtColor(self.image_expert.mask, cv2.COLOR_GRAY2RGB))
+        cv2.imwrite(os.path.join(test_path,file_name+'_cleanedmask.png'), cv2.cvtColor(self.image_expert.cleaned_mask, cv2.COLOR_GRAY2RGB))
+        cv2.imwrite(os.path.join(test_path,file_name+'_original.png'), cv2.cvtColor(color_image, cv2.COLOR_RGB2BGR))
+
+
         return [mask_parameters['area'],
-                mask_parameters['x'],
-                mask_parameters['y'],
+                #mask_parameters['x'],
+                #mask_parameters['y'],
                 mask_parameters['width'],
                 mask_parameters['height'],
                 #mask_parameters['contours'],
                 mask_parameters['major axis'],
                 mask_parameters['minor axis'],
-                mask_parameters['centroid'][0],
-                mask_parameters['centroid'][1],
-                mask_parameters['orientation'],
+                #mask_parameters['centroid'][0],
+                #mask_parameters['centroid'][1],
+                #mask_parameters['orientation'],
                 mask_parameters['% area'],
-                mask_parameters['center distance'],
+                #mask_parameters['center distance'],
                 mask_parameters['eccentricity'],
                 mask_parameters['perimeter'],
-                mask_parameters['symmetry']]
+                mask_parameters['symmetry'],
+                self.image_expert.mask_method]
