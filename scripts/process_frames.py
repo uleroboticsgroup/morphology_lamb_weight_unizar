@@ -26,7 +26,6 @@ from skimage.measure import label, regionprops
 import imutils
 import datetime
 
-#%%
 
 class ImageExpert:
     def __init__(self, parent_window, width, height):
@@ -64,7 +63,6 @@ class ImageExpert:
         if not contours:
             return None
 
-        # cnt = contours[0]
         cnt = np.vstack(contours)
 
         # Check pixels within limits
@@ -85,7 +83,6 @@ class ImageExpert:
                               )
 
         if not are_corners_within:
-            #print('corners not within')
             return None
 
         camera = self.parent_window.camera
@@ -171,16 +168,6 @@ class ImageExpert:
 
         elipse = cv2.ellipse(mask, (int(x), int(y)), (int(axis_x / 2), int(axis_y / 2)), angle, 0, 360, (255, 0, 0), 2)
 
-        """
-        angle_radians = math.radians(angle)
-        h2 = math.cos(angle_radians) * ma / 2
-        w2 = math.sin(angle_radians) * ma / 2
-        #mask_w = cv2.line(mask_w, (int(x + w2), int(y - h2)), (int(x - w2), int(y + h2)), (0, 255, 0), 2)
-        h1 = math.sin(angle_radians) * MA / 2
-        w1 = - math.cos(angle_radians) * MA / 2
-        #mask_w = cv2.line(mask_w, (int(x + w1), int(y - h1)), (int(x - w1), int(y + h1)), (0, 255, 0), 2)
-        """
-
         label_img = label(elipse)
         regions = regionprops(label_img)
         if (len(regions) == 1):
@@ -201,40 +188,10 @@ class ImageExpert:
         distance = math.sqrt(((c_img[0] - c_eli[0]) ** 2) + ((c_img[1] - c_eli[1]) ** 2))
 
         # Eccentricity: Moment of the center of the area with the center of the ellipse (distance)
-        """
-        M = cv2.moments(contours)
-        cx = int(M['m10'] / M['m00'])
-        cy = int(M['m01'] / M['m00'])
-        c_lamb = [cx, cy]
-        c_eli = [props.centroid[1], props.centroid[0]]
-        distance_ex = math.sqrt(((c_lamb[0] - c_eli[0]) ** 2) + ((c_lamb[1] - c_eli[1]) ** 2))
-        """
         eccentricity = math.sqrt(((MA/2)**2)-((ma/2)**2))/(MA/2)
 
         # Perimeter of the lamb area
         perimeter = cv2.arcLength(contours, True)
-
-        """
-        # Symmetry of the lamb (% of pixels between one side and the other)
-        mask_curv = cv2.line(mask, (int(x + (w2 * 1.1)), int(y - (h2 * 1.1))),
-                               (int(x - (w2 * 1.1)), int(y + (h2 * 1.1))), (0, 0, 0), 2)
-        label_img_curv = label(mask_curv)
-        regions_curv = regionprops(label_img_curv)
-        curv = []
-        for r in regions_curv:
-            if r.area >= 200:
-                area_c = r.area
-                curv.append(area_c)
-
-        curv = sorted(curv)
-        if len(curv) >= 3:
-            sum = 0
-            for i in range(0, len(curv) - 1):
-                sum = sum + curv[i]
-            curvature = sum / max(curv)
-        else:
-            curvature = min(curv) / max(curv)
-        """
 
         return {'area': area_mascara_real,
                 'x': img_coord_x_up_left_corner,
@@ -325,28 +282,6 @@ class ImageExpert:
         clump_mask2 = label2_img == biggest_label2
 
         mask = clump_mask2.astype(np.uint8)*255
-        #mask = cv2.dilate(clump_mask2A,selem)
-
-        """
-        fig, ax = plt.subplots(1,4)
-        ax[0].imshow(mask_in, cmap='gray')
-        ax[0].set_title('Mask')
-        ax[0].axis('off'),plt.yticks([])
-
-        ax[1].imshow(clump_maskA, cmap='gray')
-        ax[1].set_title('clump_maskA')
-        ax[1].axis('off'),plt.yticks([])
-
-        ax[2].imshow(closing, cmap='gray')
-        ax[2].set_title('closing')
-        ax[2].axis('off'),plt.yticks([])
-
-        ax[3].imshow(mask, cmap='gray')
-        ax[3].set_title('Final mask')
-        ax[3].axis('off'),plt.yticks([])
-
-        plt.show()
-        """
 
         return mask
 
@@ -405,26 +340,6 @@ class ImageExpert:
         mask = self.clean_mask(final_mask)
         self.mask = final_mask
         self.cleaned_mask = mask.copy()
-        """
-        fig, ax = plt.subplots(1,4)
-        ax[0].imshow(image_sharp)
-        ax[0].set_title('RGB Image')
-        ax[0].axis('off'),plt.yticks([])
-
-        ax[1].imshow(lum_bin, cmap='gray')
-        ax[1].set_title('LAB-Otsu')
-        ax[1].axis('off'),plt.yticks([])
-
-        ax[2].imshow(final_mask, cmap='gray')
-        ax[2].set_title('Morphology')
-        ax[2].axis('off'),plt.yticks([])
-
-        ax[3].imshow(mask, cmap='gray')
-        ax[3].set_title('Final mask')
-        ax[3].axis('off'),plt.yticks([])
-        plt.show()
-        exit()
-        """
 
         return mask
 
@@ -460,11 +375,11 @@ class Processor:
         if mask_parameters is None:
             return None
 
-        foreground_image = cv2.bitwise_and(color_image, color_image, mask=mask)
+        foreground_image =  cv2.cvtColor(self.image_expert.cleaned_mask, cv2.COLOR_GRAY2RGB )
         rectangle_image = self.image_expert.calculate_bounding_rectangle(image=foreground_image, parameters=mask_parameters)
 
         fig_1 = cv2.cvtColor(color_image, cv2.COLOR_RGB2BGR)
-        fig_2 = cv2.cvtColor(depth_colorized, cv2.COLOR_RGB2BGR)
+        fig_2 = cv2.cvtColor(self.image_expert.cleaned_mask, cv2.COLOR_RGB2BGR)
         fig_3 = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
         fig_4 = cv2.cvtColor(rectangle_image, cv2.COLOR_RGB2BGR)
         mosaico_imagen = cv2.vconcat([cv2.hconcat([fig_1, fig_2]), cv2.hconcat([fig_3, fig_4 ])])
@@ -484,18 +399,11 @@ class Processor:
 
 
         return [mask_parameters['area'],
-                #mask_parameters['x'],
-                #mask_parameters['y'],
                 mask_parameters['width'],
                 mask_parameters['height'],
-                #mask_parameters['contours'],
                 mask_parameters['major axis'],
                 mask_parameters['minor axis'],
-                #mask_parameters['centroid'][0],
-                #mask_parameters['centroid'][1],
-                #mask_parameters['orientation'],
                 mask_parameters['% area'],
-                #mask_parameters['center distance'],
                 mask_parameters['eccentricity'],
                 mask_parameters['perimeter'],
                 mask_parameters['symmetry'],
