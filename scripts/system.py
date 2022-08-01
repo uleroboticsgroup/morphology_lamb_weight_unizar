@@ -62,7 +62,7 @@ class DecisionSystem:
             f.value += 1 # signal to increment the progress bar
             label.value = u'{index} / {size}'.format(index=f.value, size=size)
                 
-    def load_aug_images(self, disk=3, comp=9000, f_name='aug_data'):
+    def load_aug_images(self, disk=6, comp=9000, f_name='aug_data'):
         path = os.getcwd()        
         if (not os.path.isdir(self.path_results)):
             os.mkdir(self.path_results)
@@ -261,7 +261,7 @@ class Image:
         return img_transformed, depth_transformed, [noise, angle, blur_size, intensity, percent]
         
         
-    def calculate_mask(self, diskSize= 9):
+    def calculate_mask(self, diskSize= 6):
         img_n = cv2.normalize(self.color_image, None, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_32F)
         #Apply sharpen kernel
         kernel = np.array([[0, -1, 0],[-1, 5,-1],[0, -1, 0]])
