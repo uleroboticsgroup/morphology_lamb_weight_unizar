@@ -1,4 +1,4 @@
-# A decision system to determine the optimal lamb weight using digital image processing and regression models
+# A non-stressful vision-based method for weighing live lambs
 
 Collaboration with G2PM (University of Zaragoza)
 
